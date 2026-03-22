@@ -1,0 +1,19 @@
+{
+  "name": "och",
+  "label": "och",
+  "type": "widget",
+  "version": "1.19.0",
+  "exbVersion": "1.19.0",
+  "author": "Mirac",
+  "description": "Opens sidebar when feature is selected",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 200,
+    "height": 100
+  }
+}

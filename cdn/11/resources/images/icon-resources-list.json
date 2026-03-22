@@ -1,0 +1,22 @@
+{
+  "1773868450892.jpg": {
+    "svg": "${appResourceUrl}/images/icon_picker_in_setting/1773868450892.jpg",
+    "properties": {
+      "filename": "1773868450892.jpg",
+      "originalName": "aaa.jpg",
+      "path": "${appResourceUrl}/images/icon_picker_in_setting/1773868450892.jpg",
+      "isUploaded": true,
+      "inlineSvg": false
+    }
+  },
+  "1774215625291.png": {
+    "svg": "${appResourceUrl}/images/icon_picker_in_setting/1774215625291.png",
+    "properties": {
+      "filename": "1774215625291.png",
+      "originalName": "basemap-svgrepo-com.png",
+      "path": "${appResourceUrl}/images/icon_picker_in_setting/1774215625291.png",
+      "isUploaded": true,
+      "inlineSvg": false
+    }
+  }
+}
