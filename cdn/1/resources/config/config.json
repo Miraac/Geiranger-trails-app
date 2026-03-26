@@ -1455,10 +1455,35 @@
           "canCompass": true,
           "canLocate": true
         },
-        "isUseCustomMapState": false,
+        "isUseCustomMapState": true,
         "layoutIndex": 0,
         "initialMapDataSourceID": "dataSource_1",
-        "initialMapState": null,
+        "initialMapState": {
+          "viewPoint": {
+            "rotation": 0,
+            "scale": 72223.819286,
+            "targetGeometry": {
+              "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+              },
+              "x": 803881.7305481342,
+              "y": 8882449.180034816
+            }
+          },
+          "extent": {
+            "spatialReference": {
+              "latestWkid": 3857,
+              "wkid": 102100
+            },
+            "xmin": 801235.0984437636,
+            "ymin": 8878006.277765747,
+            "xmax": 806528.3626525048,
+            "ymax": 8886892.082303885
+          },
+          "rotation": 0,
+          "viewType": "2d"
+        },
         "scaleRange": {
           "minScale": 661869.71401,
           "maxScale": 1425.449655
@@ -1878,13 +1903,11 @@
             "label": "Tracks_merge",
             "displayLabel": true,
             "useDataSource": {
-              "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-              "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
               "rootDataSourceId": "dataSource_1",
               "fields": [
-                "Name",
-                "Type",
-                "Difficult"
+                "Name"
               ]
             },
             "displayFields": [
@@ -1893,21 +1916,8 @@
                 "name": "Name",
                 "type": "STRING",
                 "esriType": "esriFieldTypeString",
-                "alias": "Name"
-              },
-              {
-                "jimuName": "Type",
-                "name": "Type",
-                "type": "STRING",
-                "esriType": "esriFieldTypeString",
-                "alias": "Type"
-              },
-              {
-                "jimuName": "Difficult",
-                "name": "Difficult",
-                "type": "STRING",
-                "esriType": "esriFieldTypeString",
-                "alias": "Difficult"
+                "alias": "Name",
+                "format": null
               }
             ],
             "searchFields": [
@@ -1916,14 +1926,8 @@
                 "name": "Name",
                 "type": "STRING",
                 "esriType": "esriFieldTypeString",
-                "alias": "Name"
-              },
-              {
-                "jimuName": "Type",
-                "name": "Type",
-                "type": "STRING",
-                "esriType": "esriFieldTypeString",
-                "alias": "Type"
+                "alias": "Name",
+                "format": null
               }
             ],
             "hint": "",
@@ -1951,13 +1955,11 @@
           ]
         },
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [
-            "Name",
-            "Type",
-            "Difficult"
+            "Name"
           ]
         }
       ],
@@ -2126,20 +2128,29 @@
         "filterItems": [
           {
             "type": "SINGLE",
-            "name": "Tracks_merge",
+            "name": "Tracks Filter",
             "useDataSources": [
               {
-                "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-                "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+                "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+                "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
                 "rootDataSourceId": "dataSource_1",
                 "fields": [
                   "Location",
                   "Difficult",
-                  "Shape__Length"
+                  "Length"
                 ]
               }
             ],
-            "icon": null,
+            "icon": {
+              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#000\" fill-rule=\"evenodd\" d=\"M15 1.53V0H1v1.53h.07l5.374 5.288v6.121l2.26 2.224a.5.5 0 0 0 .852-.356V6.825l5.382-5.295zM2 1h12v.049L8.556 6.406l-.001 7.207-1.111-1.093V6.399L2 1.042z\" clip-rule=\"evenodd\"></path></svg>",
+              "properties": {
+                "color": "",
+                "filename": "Filter",
+                "originalName": "filter.svg",
+                "inlineSvg": true,
+                "size": 14
+              }
+            },
             "sqlExprObj": {
               "logicalOperator": "AND",
               "parts": [
@@ -2175,17 +2186,18 @@
                   },
                   "displayType": "USE_ASK_FOR_VALUE",
                   "askForValueOptions": {
-                    "label": "Difficulty level",
+                    "label": "Trail color",
                     "display": "BLOCK",
                     "hint": "",
-                    "cascade": null
+                    "cascade": null,
+                    "sortType": "VALUE"
                   },
                   "displayLabel": null,
                   "caseSensitive": false
                 },
                 {
                   "type": "SINGLE",
-                  "jimuFieldName": "Shape__Length",
+                  "jimuFieldName": "Length",
                   "operator": "NUMBER_OPERATOR_IS_BETWEEN",
                   "valueOptions": {
                     "isValid": true,
@@ -2204,7 +2216,7 @@
                   },
                   "displayType": "USE_ASK_FOR_VALUE",
                   "askForValueOptions": {
-                    "label": "Length",
+                    "label": null,
                     "display": "BLOCK",
                     "hint": "",
                     "cascade": null
@@ -2213,8 +2225,8 @@
                   "caseSensitive": false
                 }
               ],
-              "sql": "Shape__Length BETWEEN 0 AND 20000",
-              "displaySQL": "(Location = ?) and (Difficult = ?) and (SHAPE__Length is between 0 and 20000)"
+              "sql": "Length BETWEEN 0 AND 20000",
+              "displaySQL": "(Location = ?) and (Difficult = ?) and (Length is between 0 and 20000)"
             },
             "autoApplyWhenWidgetOpen": true,
             "collapseFilterExprs": false
@@ -2230,13 +2242,13 @@
       "id": "widget_31",
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [
             "Difficult",
-            "Location",
-            "Shape__Length"
+            "Length",
+            "Location"
           ]
         }
       ],
@@ -2306,7 +2318,8 @@
                 "width": "1px"
               }
             },
-            "listLayout": "Custom"
+            "listLayout": "Custom",
+            "enableDynamicStyle": false
           },
           "HOVER": {
             "cardSize": {
@@ -2358,19 +2371,24 @@
         "filters": null,
         "layoutType": "ROW",
         "keepAspectRatio": false,
-        "filterOpen": true,
-        "noDataMessage": "No data",
+        "filterOpen": false,
+        "noDataMessage": "No Trails",
         "showRecordCount": false,
         "linkParam": {
           "linkType": "NONE"
-        }
+        },
+        "searchFields": null,
+        "sorts": null,
+        "showSelectedOnlyOpen": false,
+        "showClearSelected": false,
+        "showRefresh": false
       },
       "id": "widget_161",
       "useDataSourcesEnabled": true,
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": []
         }
@@ -2394,7 +2412,7 @@
       "version": "1.19.0",
       "label": "Nazwa",
       "config": {
-        "text": "<p style=\"text-align: center;\"><span style=\"font-size: 14px; color: var(--dark-800); letter-spacing: 0px;\"><exp data-uniqueid=\"81c7a4d9_2117_9f93_e7c7_afb84da80644\" data-dsid=\"dataSource_1-19cd26f5b93-layer-3\" data-expression=\"%7B%22name%22%3A%22%7BName%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BName%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19cd26f5b93-layer-3%22%2C%22jimuFieldName%22%3A%22Name%22%2C%22isFromRepeatedDataSourceContext%22%3Atrue%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿{Name}﻿</span>﻿</exp>&nbsp;</span></p>",
+        "text": "<p style=\"text-align: center;\"><exp data-uniqueid=\"3e140fb2_cb5b_f15c_cd98_6527f6d73e4d\" data-dsid=\"dataSource_1-19d2c539074-layer-6\" data-expression=\"%7B%22name%22%3A%22%7BName%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BName%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19d2c539074-layer-6%22%2C%22jimuFieldName%22%3A%22Name%22%2C%22isFromRepeatedDataSourceContext%22%3Atrue%7D%5D%7D\">﻿<span contenteditable=\"false\">{Name}</span>﻿</exp>&nbsp;</p>",
         "placeholder": "<p><span style=\"font-size: 13px;color: var(--dark-800);\">Lorem ipsum dolor sit amet</span></p>",
         "style": {
           "verticalAlign": "start",
@@ -2408,7 +2426,7 @@
             {
               "type": "FIELD",
               "exp": "{Name}",
-              "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
               "jimuFieldName": "Name",
               "isFromRepeatedDataSourceContext": true
             }
@@ -2418,8 +2436,8 @@
       "id": "widget_183",
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [
             "Name"
@@ -2450,25 +2468,25 @@
           },
           "dynamicUrlType": "SYMBOL",
           "imgSourceType": "BYDYNAMICURL",
-          "srcExpression": null,
           "altTextWithAttachmentName": null,
           "toolTipWithAttachmentName": null,
           "useDataSourceForMainDataAndViewSelector": {
-            "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-            "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+            "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+            "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
             "rootDataSourceId": "dataSource_1",
             "fields": [],
             "useFieldsInSymbol": true
           },
-          "isSelectedFromRepeatedDataSourceContext": true
+          "isSelectedFromRepeatedDataSourceContext": true,
+          "srcExpression": null
         },
         "styleConfig": {}
       },
       "id": "widget_184",
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [],
           "useFieldsInSymbol": true
@@ -2751,7 +2769,7 @@
       "version": "1.19.0",
       "label": "WC Opis Trasy 2",
       "config": {
-        "text": "<p>Name: <exp data-uniqueid=\"141ff78a_bb94_ff2c_7deb_1b80688e3509\" data-dsid=\"dataSource_1-19cd26f5b93-layer-3-selection\" data-expression=\"%7B%22name%22%3A%22%7BName%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BName%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19cd26f5b93-layer-3-selection%22%2C%22jimuFieldName%22%3A%22Name%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿﻿﻿{Name}﻿﻿﻿</span>﻿</exp>&nbsp;</p><p>Color track: <exp data-uniqueid=\"c8490c35_4b0b_cf34_cf6e_114947d321fe\" data-dsid=\"dataSource_1-19cd26f5b93-layer-3-selection\" data-expression=\"%7B%22name%22%3A%22%7BDifficult%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BDifficult%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19cd26f5b93-layer-3-selection%22%2C%22jimuFieldName%22%3A%22Difficult%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿﻿﻿{Difficult}﻿﻿﻿</span>﻿</exp>&nbsp;</p><p>Length: <exp data-uniqueid=\"edc7c5ec_5da4_35be_845c_89ae0602a912\" data-dsid=\"dataSource_1-19cd26f5b93-layer-3-selection\" data-expression=\"%7B%22name%22%3A%22%7BSHAPE__Length%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BSHAPE__Length%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19cd26f5b93-layer-3-selection%22%2C%22jimuFieldName%22%3A%22Shape__Length%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿﻿﻿{SHAPE__Length}﻿﻿﻿</span>﻿</exp>&nbsp;m</p><p>Description: <exp data-uniqueid=\"5865cefa_37c7_8895_97d7_08da46b4c70b\" data-dsid=\"dataSource_1-19cd26f5b93-layer-3-selection\" data-expression=\"%7B%22name%22%3A%22%7BDescript%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BDescript%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19cd26f5b93-layer-3-selection%22%2C%22jimuFieldName%22%3A%22Descript%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿﻿﻿{Descript}﻿﻿﻿</span>﻿</exp>&nbsp;<exp data-uniqueid=\"a0995a67_e142_4ce7_c9e3_5b6736e134f2\" data-expression=\"%7B%22name%22%3A%22%20%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22OPERATOR%22%2C%22exp%22%3A%22%C2%A0%22%7D%5D%7D\">﻿<span contenteditable=\"false\">﻿﻿ ﻿﻿</span>﻿</exp>&nbsp;</p>",
+        "text": "<p>Name: <exp data-uniqueid=\"a075e598_7e28_2fd4_d6fc_987dfa5ae8f1\" data-dsid=\"dataSource_1-19d2c539074-layer-6-selection\" data-expression=\"%7B%22name%22%3A%22%7BName%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BName%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19d2c539074-layer-6-selection%22%2C%22jimuFieldName%22%3A%22Name%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">{Name}</span>﻿</exp>&nbsp;</p><p>Color track: <exp data-uniqueid=\"62af6452_1bfa_bc84_be42_46144b75d708\" data-dsid=\"dataSource_1-19d2c539074-layer-6-selection\" data-expression=\"%7B%22name%22%3A%22%7BDifficult%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BDifficult%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19d2c539074-layer-6-selection%22%2C%22jimuFieldName%22%3A%22Difficult%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">{Difficult}</span>﻿</exp>&nbsp;</p><p>Length: <exp data-uniqueid=\"2692e763_9dd5_eb45_6913_d9ebf97f7e44\" data-dsid=\"dataSource_1-19d2c539074-layer-6-selection\" data-expression=\"%7B%22name%22%3A%22%7BLength%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BLength%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19d2c539074-layer-6-selection%22%2C%22jimuFieldName%22%3A%22Length%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">{Length}</span>﻿</exp>&nbsp;&nbsp;m</p><p>Description: <exp data-uniqueid=\"f67bbfa3_7c32_0e3f_bf17_f2e9c3a8100f\" data-dsid=\"dataSource_1-19d2c539074-layer-6-selection\" data-expression=\"%7B%22name%22%3A%22%7BDescript%7D%22%2C%22parts%22%3A%5B%7B%22type%22%3A%22FIELD%22%2C%22exp%22%3A%22%7BDescript%7D%22%2C%22dataSourceId%22%3A%22dataSource_1-19d2c539074-layer-6-selection%22%2C%22jimuFieldName%22%3A%22Descript%22%2C%22isFromRepeatedDataSourceContext%22%3Afalse%7D%5D%7D\">﻿<span contenteditable=\"false\">{Descript}</span>﻿</exp>&nbsp;</p>",
         "placeholder": "Double click to edit text",
         "style": {
           "wrap": true,
@@ -2793,13 +2811,13 @@
       "useDataSourcesEnabled": true,
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [
             "Name",
             "Difficult",
-            "Shape__Length",
+            "Length",
             "Descript"
           ]
         }
@@ -3008,8 +3026,8 @@
       "useDataSourcesEnabled": true,
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1"
         }
       ]
@@ -3169,19 +3187,23 @@
           "imageDisplayQualityMode": "ORIGINAL",
           "dynamicUrlType": null,
           "imgSourceType": "BYDYNAMICURL",
+          "imageViewer": true,
+          "altTextWithAttachmentName": null,
+          "toolTipWithAttachmentName": null,
+          "isSelectedFromRepeatedDataSourceContext": null,
+          "useDataSourceForMainDataAndViewSelector": null,
           "srcExpression": {
             "name": "{Photo_url}",
             "parts": [
               {
                 "type": "FIELD",
                 "exp": "{Photo_url}",
-                "dataSourceId": "dataSource_1-19cd26f5b93-layer-3-selection",
+                "dataSourceId": "dataSource_1-19d2c539074-layer-6-selection",
                 "jimuFieldName": "Photo_url",
                 "isFromRepeatedDataSourceContext": false
               }
             ]
-          },
-          "imageViewer": true
+          }
         },
         "styleConfig": {}
       },
@@ -3189,8 +3211,8 @@
       "useDataSourcesEnabled": true,
       "useDataSources": [
         {
-          "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-          "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+          "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+          "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
           "rootDataSourceId": "dataSource_1",
           "fields": [
             "Photo_url"
@@ -3868,14 +3890,14 @@
           "description": null,
           "config": {
             "useDataSource": {
-              "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-              "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
               "rootDataSourceId": "dataSource_1"
             },
             "useDataSources": [
               {
-                "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-                "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+                "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+                "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
                 "rootDataSourceId": "dataSource_1"
               }
             ],
@@ -3889,8 +3911,8 @@
           "version": "1.20.0",
           "useDataSources": [
             {
-              "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
-              "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
               "rootDataSourceId": "dataSource_1"
             }
           ]
@@ -3920,6 +3942,40 @@
               "dataSourceId": "dataSource_1-19cd26f5b93-layer-3",
               "mainDataSourceId": "dataSource_1-19cd26f5b93-layer-3",
               "rootDataSourceId": "dataSource_1"
+            }
+          ]
+        },
+        {
+          "actionId": "filter-data-record-action-1774565794809",
+          "sectionId": null,
+          "messageWidgetId": "widget_161",
+          "actionName": "filter data record action",
+          "description": null,
+          "config": {
+            "messageUseDataSource": {
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "rootDataSourceId": "dataSource_1",
+              "fields": []
+            },
+            "actionUseDataSource": {
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "rootDataSourceId": "dataSource_1",
+              "fields": []
+            },
+            "sqlExprObj": null,
+            "enabledDataRelationShip": false,
+            "enableQueryWithCurrentExtent": true,
+            "connectionType": "SET_CUSTOM_FIELDS"
+          },
+          "version": "1.19.0",
+          "useDataSources": [
+            {
+              "dataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "mainDataSourceId": "dataSource_1-19d2c539074-layer-6",
+              "rootDataSourceId": "dataSource_1",
+              "fields": []
             }
           ]
         }
@@ -4057,7 +4113,7 @@
     "portalUrl": "https://MMan.maps.arcgis.com",
     "enableA11yForWidgetSettings": true
   },
-  "timestamp": 1774555949530,
+  "timestamp": 1774566716816,
   "sharedThemeVariables": null,
   "mainLocale": "en-us",
   "dataSources": {
@@ -4068,16 +4124,6 @@
       "itemId": "4c443189e44d41eabeda049d02a4c578",
       "portalUrl": "https://MMan.maps.arcgis.com",
       "childDataSourceJsons": {
-        "19cd26f5b93-layer-3": {
-          "id": "dataSource_1-19cd26f5b93-layer-3",
-          "type": "FEATURE_LAYER",
-          "sourceLabel": "Tracks_merge",
-          "portalUrl": "https://www.arcgis.com",
-          "itemId": "fb0e54b05fdf4dc3b885a9c7d55bc33c",
-          "layerId": "1",
-          "url": "https://services7.arcgis.com/aEWjsBF1BXLdIL3s/arcgis/rest/services/Tracks_merge/FeatureServer/1",
-          "dataViews": {}
-        },
         "19cd26f4cb5-layer-2": {
           "id": "dataSource_1-19cd26f4cb5-layer-2",
           "type": "FEATURE_LAYER",
